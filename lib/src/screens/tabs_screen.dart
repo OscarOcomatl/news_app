@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:news_app/src/screens/screens.dart';
 import 'package:provider/provider.dart';
 
 class TabsScreen extends StatelessWidget {
@@ -58,9 +58,7 @@ class _Screens extends StatelessWidget {
       // physics: const BouncingScrollPhysics(),  // Animacion para indicar que no hay mas info para hacer scroll
       physics: const NeverScrollableScrollPhysics(), // Bloquea la interaccion del scroll, se realiza para hacer la transicion con el bottomNavigationBar
       children: [
-        Container(
-          color: Colors.red,
-        ),
+        Tab1Screen(),
         Container(
           color: Colors.blue,
         )
