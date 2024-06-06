@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         initialRoute: 'TabsScreen',
         routes: {
-          'TabsScreen' : (_) => TabsScreen(),
+          'TabsScreen' : (_) => const TabsScreen(),
         },
         theme: darkTheme,
         // home: Scaffold(

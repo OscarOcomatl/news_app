@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/src/models/news_models.dart';
-import 'package:news_app/src/theme/app_theme.dart';
+import 'package:news_app/src/models/news_model.dart';
+// import 'package:news_app/src/theme/app_theme.dart';
 
 class ListaNoticias extends StatelessWidget {
   const ListaNoticias({super.key, required this.noticias});
@@ -12,7 +12,7 @@ class ListaNoticias extends StatelessWidget {
     return ListView.builder(
         itemCount: noticias.length,
         itemBuilder: (BuildContext context, int index) {
-          print('noticias: ${noticias[index]}');
+          // print('noticias: ${noticias[index]}');
           return _Noticias(noticia: noticias[index], index: index);
           // return Text(noticias[index].title!, style: TextStyle(color: Colors.white),);
         });
@@ -20,7 +20,7 @@ class ListaNoticias extends StatelessWidget {
 }
 
 class _Noticias extends StatelessWidget {
-  const _Noticias({super.key, required this.noticia, required this.index});
+  const _Noticias({required this.noticia, required this.index});
 
   final Article noticia;
   final int index;
@@ -33,20 +33,21 @@ class _Noticias extends StatelessWidget {
         _TarjetaTitulo(noticia),
         _TarjetaImagen(noticia),
         _TarjetaBody(noticia),
-        SizedBox(height: 10,),
-        Divider(),
-        _TarjetaBotones()
+        const SizedBox(height: 10,),
+        const Divider(),
+        const _TarjetaBotones()
       ],
     );
   }
 }
 
 class _TarjetaBotones extends StatelessWidget {
-  const _TarjetaBotones({super.key});
+  const _TarjetaBotones();
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 1),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -56,16 +57,16 @@ class _TarjetaBotones extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
             ),
             fillColor: Colors.white,
-            child: Icon(Icons.star_border),
+            child: const Icon(Icons.star_border),
           ),
-          SizedBox(width: 10,),
+          const SizedBox(width: 10,),
           RawMaterialButton(
             onPressed: (){}, 
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
             fillColor: Colors.white,
-            child: Icon(Icons.more),
+            child: const Icon(Icons.more),
           ),
         ],
       ),
@@ -81,33 +82,33 @@ class _TarjetaBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Text((noticia.description != null) ? noticia.description : ''),
     );
   }
 }
 
 class _TarjetaTopBar extends StatelessWidget {
-  const _TarjetaTopBar({super.key, required this.noticia, required this.index});
+  const _TarjetaTopBar({required this.noticia, required this.index});
 
   final Article noticia;
   final int index;
 
   @override
   Widget build(BuildContext context) {
-    print('noticia: ${noticia.source}');
+    // print('noticia: ${noticia.source}');
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      margin: EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      margin: const EdgeInsets.only(bottom: 10),
       child: Row(
         children: [
           Text(
             '${index + 1}',
-            style: TextStyle(color: Colors.red),
+            style: const TextStyle(color: Colors.red),
           ),
           Text(
             '${noticia.author}',
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           )
         ],
       ),
@@ -138,16 +139,17 @@ class _TarjetaImagen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 15),
+      margin: const EdgeInsets.symmetric(vertical: 15,horizontal: 15),
       child: ClipRRect(
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(50), bottomRight: Radius.circular(50)),
         child: Container(
             child: (noticia.urlToImage != null)
                 ? FadeInImage(
                     placeholder: const AssetImage('assets/img/giphy.gif'),
                     image: NetworkImage(noticia.urlToImage))
-                : Image(image: AssetImage('assets/img/no-image.png'))),
+                : imageNotAvailable()
+        ),
       ),
     );
     // if(noticia.urlToImage != null){
@@ -162,9 +164,15 @@ class _TarjetaImagen extends StatelessWidget {
     // );
   }
 
+  Widget imageNotAvailable(){
+    return const Image(
+      image: AssetImage('assets/img/no-image.png')
+    );
+  }
+
   Widget withoutImage() {
     return Container(
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         child: const FadeInImage(
             placeholder: AssetImage('assets/img/giphy.gif'),
             image: AssetImage('assets/img/no-image.png')));
@@ -172,7 +180,7 @@ class _TarjetaImagen extends StatelessWidget {
 
   Widget withImage() {
     return Container(
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         child: FadeInImage(
             placeholder: const AssetImage('assets/img/giphy.gif'),
             image: NetworkImage(noticia.urlToImage)));

@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 class TabsScreen extends StatelessWidget {
 
-
+  const TabsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +22,7 @@ class TabsScreen extends StatelessWidget {
 }
 
 class _Navigation extends StatelessWidget {
-  const _Navigation({
-    super.key,
-  });
+  const _Navigation();
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +32,7 @@ class _Navigation extends StatelessWidget {
     return BottomNavigationBar(
       currentIndex: navigationModel.currentPage,
       onTap: ( index ) => navigationModel.currentPage = index,
-      items: [
+      items: const [
         BottomNavigationBarItem(icon: Icon(Icons.person_2_outlined),label: 'Para ti'),
         BottomNavigationBarItem(icon: Icon(Icons.public),label: 'Encabezados'),
       ]
@@ -43,9 +41,7 @@ class _Navigation extends StatelessWidget {
 }
 
 class _Screens extends StatelessWidget {
-  const _Screens({
-    super.key,
-  });
+  const _Screens();
 
   @override
   Widget build(BuildContext context) {
@@ -57,11 +53,9 @@ class _Screens extends StatelessWidget {
       // scrollDirection: Axis.vertical, // cambiar la direccion de scroll del PageView
       // physics: const BouncingScrollPhysics(),  // Animacion para indicar que no hay mas info para hacer scroll
       physics: const NeverScrollableScrollPhysics(), // Bloquea la interaccion del scroll, se realiza para hacer la transicion con el bottomNavigationBar
-      children: [
+      children: const [
         Tab1Screen(),
-        Container(
-          color: Colors.blue,
-        )
+        Tabs2Screen()
       ],
     );
   }
@@ -69,13 +63,13 @@ class _Screens extends StatelessWidget {
 
 class _NavigationModel with ChangeNotifier {
   int _currentPage = 0;
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
 
   int get currentPage => _currentPage;
   
   set currentPage(int value){
     _currentPage = value;
-    _pageController.animateToPage(value, duration: Duration(microseconds: 250), curve: Curves.easeOut);
+    _pageController.animateToPage(value, duration: const Duration(microseconds: 250), curve: Curves.easeOut);
     notifyListeners();
   }
 

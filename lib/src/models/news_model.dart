@@ -1,9 +1,13 @@
 import 'dart:convert';
 
+// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+// import 'package:news_app/src/models/category_model.dart';
+
 class NewsResponse {
     String? status;
     int? totalResults;
     List<Article>? articles;
+          
 
     NewsResponse({
         this.status,
