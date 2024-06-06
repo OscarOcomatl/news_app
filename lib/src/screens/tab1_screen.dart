@@ -14,7 +14,7 @@ class Tab1Screen extends StatelessWidget {
 
     return Scaffold(
 
-      body: ListaNoticias(noticias: headlines!)
+      body: ListaNoticias(noticias: headlines)
 
     );
   }
